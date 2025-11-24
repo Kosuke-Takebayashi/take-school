@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\LessonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,6 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->get('/dashboard', function () {
     return view('dashboard'); // ダミーでもOK
 })->name('dashboard');
+
+// レッスン一覧ページ
+Route::get('/lessons', [LessonController::class, 'index'])->name('lessons.index');
