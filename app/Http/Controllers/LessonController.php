@@ -11,7 +11,6 @@ class LessonController extends Controller
     {
         $lessons = Lesson::all(); // DBからレッスン取得
         return view('lessons.index', compact('lessons'));
-        // Route::get('/lessons/{lesson}', [LessonController::class, 'show'])->name('lessons.show');
     }
 
     public function show(Lesson $lesson)
