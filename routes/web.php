@@ -46,3 +46,10 @@ Route::middleware(['auth'])->get('/dashboard', function () {
 
 // レッスン一覧ページ
 Route::get('/lessons', [LessonController::class, 'index'])->name('lessons');
+
+// 管理画面用
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('lessons', \App\Http\Controllers\Admin\LessonController::class);
+});
+
+

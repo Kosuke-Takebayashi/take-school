@@ -17,4 +17,6 @@ class LessonController extends Controller
     {
         return view('lessons.show', compact('lesson'));
     }
+
+
 }
