@@ -45,4 +45,4 @@ Route::middleware(['auth'])->get('/dashboard', function () {
 })->name('dashboard');
 
 // レッスン一覧ページ
-Route::get('/lessons', [LessonController::class, 'index'])->name('lessons.index');
+Route::get('/lessons', [LessonController::class, 'index'])->name('lessons');
