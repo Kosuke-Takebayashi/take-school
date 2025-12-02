@@ -12,8 +12,8 @@
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-4">
                     <h3 class="text-gray-600 font-bold text-lg">{{ $lesson->title }}</h3>
                     <p class="text-gray-600 dark:text-gray-300">{{ $lesson->description }}</p>
-                    @if($lesson->video_url)
-                    <a href="{{ $lesson->video_url }}" class="text-blue-500 hover:underline" target="_blank">動画を見る</a>
+                    @if($lesson->content)
+                    <a href="{{ route('lessons.show', $lesson->id) }}" class="text-blue-500 hover:underline" target="_blank">動画を見る</a>
                     @endif
                 </div>
                 @endforeach

@@ -10,5 +10,5 @@ class Lesson extends Model
     use HasFactory;
 
     // 変更可能なカラムを指定
-    protected $fillable = ['title', 'description', 'video_url'];
+    protected $fillable = ['title', 'description', 'content'];
 }

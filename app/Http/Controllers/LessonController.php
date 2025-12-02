@@ -18,5 +18,12 @@ class LessonController extends Controller
         return view('lessons.show', compact('lesson'));
     }
 
+    public function complete(Lesson $lesson) {
+    auth()->user()->progress()->updateOrCreate(
+        ['lesson_id' => $lesson->id],
+        ['status' => 'completed']
+    );
 
+    return back();
+}
 }

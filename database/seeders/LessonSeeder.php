@@ -16,13 +16,13 @@ class LessonSeeder extends Seeder
         Lesson::create([
             'title' => 'HTML基礎',
             'description' => 'HTMLの基本タグや構造を学びます',
-            'video_url' => 'https://example.com/html-video',
+            'content' => '<a href="">https://example.com/html-video</a>',
         ]);
 
         Lesson::create([
             'title' => 'CSS基礎',
             'description' => 'CSSのセレクタやスタイルの基本を学びます',
-            'video_url' => 'https://example.com/css-video',
+            'content' => 'https://example.com/css-video',
         ]);
     }
 }
