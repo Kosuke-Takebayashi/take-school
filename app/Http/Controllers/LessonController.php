@@ -9,7 +9,7 @@ class LessonController extends Controller
 {
 
     use \Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-    
+
     public function index()
     {
         $lessons = Lesson::all(); // DBからレッスン取得
@@ -32,17 +32,14 @@ class LessonController extends Controller
     {
         $this->authorize('update', $lesson);
 
-        $validated = $request->validate([
-            'title' => ['required', 'string', 'max:255'],
-            'description' => ['nullable', 'string'],
-            'content' => ['nullable', 'string'], // レッスン本文
+        $request->validate([
+            'content' => 'required|string',
         ]);
 
-        $lesson->update($validated);
+        $lesson->content = $request->input('content');
+        $lesson->save();
 
-        return redirect()
-            ->route('lessons.index')
-            ->with('success', 'レッスンを更新しました。');
+        return redirect()->route('lessons.index')->with('success', 'レッスンを更新しました。');
     }
 
     public function complete(Lesson $lesson)
