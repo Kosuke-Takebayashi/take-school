@@ -15,6 +15,11 @@
                     @if($lesson->content)
                     <a href="{{ route('lessons.show', $lesson->id) }}" class="text-blue-500 hover:underline" target="_blank">動画を見る</a>
                     @endif
+                    @can('update', $lesson)
+                    <a href="{{ route('lessons.edit', $lesson->id) }}" class="btn btn-sm btn-primary">
+                        編集
+                    </a>
+                    @endcan
                 </div>
                 @endforeach
             </div>

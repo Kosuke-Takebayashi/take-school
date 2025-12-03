@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class LessonController extends Controller
 {
+
+    use \Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+    
     public function index()
     {
         $lessons = Lesson::all(); // DBからレッスン取得
@@ -18,12 +21,37 @@ class LessonController extends Controller
         return view('lessons.show', compact('lesson'));
     }
 
-    public function complete(Lesson $lesson) {
-    auth()->user()->progress()->updateOrCreate(
-        ['lesson_id' => $lesson->id],
-        ['status' => 'completed']
-    );
+    public function edit(Lesson $lesson)
+    {
+        $this->authorize('update', $lesson);
+        return view('lessons.edit', compact('lesson'));
+    }
 
-    return back();
-}
+    // 更新処理
+    public function update(Request $request, Lesson $lesson)
+    {
+        $this->authorize('update', $lesson);
+
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'content' => ['nullable', 'string'], // レッスン本文
+        ]);
+
+        $lesson->update($validated);
+
+        return redirect()
+            ->route('lessons.index')
+            ->with('success', 'レッスンを更新しました。');
+    }
+
+    public function complete(Lesson $lesson)
+    {
+        auth()->user()->progress()->updateOrCreate(
+            ['lesson_id' => $lesson->id],
+            ['status' => 'completed']
+        );
+
+        return back();
+    }
 }
