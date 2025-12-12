@@ -13,10 +13,10 @@
                     <h3 class="text-gray-600 font-bold text-lg">{{ $lesson->title }}</h3>
                     <p class="text-gray-600 dark:text-gray-300">{{ $lesson->description }}</p>
                     @if($lesson->content)
-                    <a href="{{ route('lessons.show', $lesson->id) }}" class="text-blue-500 hover:underline" target="_blank">動画を見る</a>
+                    <a href="{{ route('lessons.show', $lesson->id) }}" class="inline-block bg-blue-600 px-4 py-2 bg-blue  text-gray-600 dark:text-gray-300 hover:underline" target="_blank">動画を見る</a>
                     @endif
                     @can('update', $lesson)
-                    <a href="{{ route('lessons.edit', $lesson->id) }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('lessons.edit', $lesson->id) }}" class="px-4 py-2 bg-red-600 text-gray-600  dark:text-gray-300 btn btn-sm btn-primary">
                         編集
                     </a>
                     @endcan
